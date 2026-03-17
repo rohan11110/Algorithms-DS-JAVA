@@ -138,9 +138,98 @@ class Arrays {
         return maxSum;
     }
 
+    public static int TrappingRainWater(int arr[]){
+        int n = arr.length;
+
+        int lMax[] = new int[n];
+        lMax[0] = arr[0];
+
+        for(int i=1;i<n;i++){
+            lMax[i] = Math.max(lMax[i-1],arr[i]);
+        }
+
+        int rMax[] = new int[n];
+        rMax[n-1] = arr[n-1];
+
+        for(int i=n-2;i>=0;i--){
+            rMax[i] = Math.max(rMax[i+1], arr[i]);
+        }
+
+        int mostWater = 0;
+
+        for(int i=0;i<n;i++){
+            int minBound = Math.min(lMax[i], rMax[i]);
+            mostWater += minBound - arr[i];
+        }
+
+        return mostWater;
+    }
+
+
+    public static int buyAndSellStocks(int arr[]){
+        int buyStock = Integer.MAX_VALUE;
+        int maxProfit = Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i] > buyStock){
+              int profit = arr[i] - buyStock;
+              maxProfit = Math.max(maxProfit, profit);
+            }else{
+                buyStock = arr[i];
+            }
+        }
+
+        return maxProfit;
+
+    }
+
+    public static void reverseArray(int arr[],int st , int ed){
+
+        while(st < ed){
+            int temp = arr[st];
+            arr[st] = arr[ed];
+            arr[ed] = temp;
+            st++;
+            ed--;
+        }
+    }
+
+    public static void nextPermutation(int arr[]){
+        //find Pivot point(1,2,3)=> 2 is pivot point
+        int n = arr.length;
+        int pivot=-1;
+
+        for(int i=n-1;i>0;i--){
+            if(arr[i-1] < arr[i]){
+                pivot = i-1;
+                break;
+            }
+        }
+
+        if(pivot == -1){
+           reverseArray(arr,0,n-1);
+           return;
+        }else{
+            for(int i=n-1;i>pivot;i--){
+                if(arr[pivot] < arr[i]){
+                    int temp = arr[i];
+                    arr[i] = arr[pivot];
+                    arr[pivot] = temp;
+                    break;
+                }
+                reverseArray(arr,pivot+1,n-1);
+            }
+        }
+
+
+
+    }
+
     public static void main(String[] args) {
-        int arr[] = { 2, 3, 5, 6, 8, 9 };
-        System.out.println(maxSubArraySum3(arr));
+        int arr[] = { 1,3,2,0};
+        nextPermutation(arr);
+        for(int i : arr){
+            System.out.print(i + ",");
+        }
 
     }
 }

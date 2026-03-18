@@ -112,10 +112,30 @@ public class TwoDArrays {
         return false;
     }
 
-    public static void main(String[] args) {
-        int arr[][] = { { 10, 20, 30, 40 }, { 15, 25, 35, 45 }, {27,29, 37, 48 }, { 32,33, 39, 50 } };
+    public static void transedMatrix(int arr[][]){
+      int n = arr.length;
+      int m = arr[0].length;
 
-       System.out.println(searchInSortedMatrix(arr, 150));
+      int transedMatrix[][] = new int[m][n];
+
+      for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            transedMatrix[j][i] = arr[i][j];
+        }
+      }
+
+      for(int[] i : transedMatrix){
+         for(int j : i){
+            System.out.print(j + " ,");
+         }
+         System.err.println();
+      }
+    }
+
+    public static void main(String[] args) {
+        int arr[][] = { { 10, 20, 30, 40 }, { 15, 25, 35, 45 }};
+
+       transedMatrix(arr);
     }
 
 }

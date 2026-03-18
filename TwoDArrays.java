@@ -1,5 +1,40 @@
 public class TwoDArrays {
 
+    public static int findLargestNumber(int arr[][]){
+        int maxValue = Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr[0].length;j++){
+                if(arr[i][j] > maxValue){
+                    maxValue = arr[i][j];
+                }
+            }
+        }
+
+        return maxValue;
+    }
+
+    public static void spiralMatix(int arr[][]){
+        int rowStart = 0;
+        int rowEnd = arr.length-1;
+        int colStart = 0;
+        int colEnd = arr[0].length-1;
+        for(int row=rowStart;row<rowEnd;row++){
+           System.out.print(arr[rowStart][row]+",");
+        }
+
+        for(int col=colStart+1;col<colEnd;col++){
+            System.out.print(arr[col][rowEnd]+",");
+        }
+
+        for(int row=rowEnd-1;row>=rowStart;row--){
+           System.out.print(arr[rowEnd][row]);
+        }
+
+        for(int col=colStart-1;colStart+1>col;col--){
+             System.out.print(arr[col][rowStart]);
+        }
+    }
+
     public static void spiralMatrix(int arr[][]) {
         int n = arr.length;
         int m = arr[0].length;

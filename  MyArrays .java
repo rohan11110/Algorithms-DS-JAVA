@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Arrays {
+class MyArrays  {
 
     public static int liearSearch(int arr[], int key) {
         for (int i = 0; i < arr.length; i++) {
